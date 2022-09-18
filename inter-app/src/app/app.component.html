@@ -1,25 +1,34 @@
 <div class="wrapper-table">
-      <ul>
-        <li>
-          <a [routerLink]="['navigator']" [queryParams]="{'tab': '1'}">
-            Income
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['navigator']" [queryParams]="{'tab': '2'}">
-            Outcome
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['navigator']" [queryParams]="{'tab': '3'}">
-            Loans
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['navigator']" [queryParams]="{'tab': '4'}">
-            Investment
-          </a>
-        </li>
-      </ul>
+  <div class="upper-level">
+    <ul>
+      <li>
+        <a [routerLink]="['income','navigator']" [queryParams]="{'tab': '1'}"
+           routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+           >
+          Income
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['outcome','navigator']" [queryParams]="{'tab': '2'}"
+        routerLinkActive="active">
+          Outcome
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['loans','navigator']" [queryParams]="{'tab': '3'}"
+           routerLinkActive="active">
+          Loans
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['investment','navigator']" [queryParams]="{'tab': '4'}"
+           routerLinkActive="active">
+          Investment
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="lower-level">
     <router-outlet></router-outlet>
+  </div>
 </div>

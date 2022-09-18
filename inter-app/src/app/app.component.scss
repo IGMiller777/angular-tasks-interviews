@@ -1,4 +1,35 @@
 .active {
-  border: 2px solid grey;
   color: red;
+}
+
+.wrapper-table {
+  margin: 10rem auto;
+  width: 30rem;
+  min-height: 10rem;
+  border: 2px solid black;
+  border-radius: 10px;
+
+  .upper-level {
+    ul {
+      list-style-type: none;
+      margin-left: 0;
+      display: flex;
+      gap: 2rem;
+
+      li {
+        padding: 0.3rem;
+        border: 2px solid #a9a9a9;
+        border-radius: 10px;
+
+        a {
+          text-decoration: none;
+          //color: black;
+        }
+      }
+    }
+
+  }
+  .lower-level {
+    border-top: 1px solid #000;
+  }
 }
