@@ -1,26 +1,26 @@
 <div class="wrapper-table">
   <div class="upper-level">
     <ul>
-      <li>
+      <li (click)="callService(1)" >
         <a [routerLink]="['navigator']" [queryParams]="{'tab': '1'}"
            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
            >
           Income
         </a>
       </li>
-      <li>
+      <li (click)="callService(2)">
         <a [routerLink]="['navigator']" [queryParams]="{'tab': '2'}"
         routerLinkActive="active">
           Outcome
         </a>
       </li>
-      <li>
+      <li (click)="callService(3)">
         <a [routerLink]="['navigator']" [queryParams]="{'tab': '3'}"
            routerLinkActive="active">
           Loans
         </a>
       </li>
-      <li>
+      <li (click)="callService(4)">
         <a [routerLink]="['navigator']" [queryParams]="{'tab': '4'}"
            routerLinkActive="active">
           Investment

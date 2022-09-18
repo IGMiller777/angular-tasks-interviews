@@ -1,42 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Observable, Subscription, switchAll} from "rxjs";
 import { Router} from "@angular/router";
 import {IData} from "../interfaces/data.interface";
 import {HttpClient} from "@angular/common/http";
 import dataJSON from '../data.json';
+import {DataService} from "../service/data.service";
 
 @Component({
   selector: 'app-navigator',
   templateUrl: './navigator.component.html',
-  styleUrls: ['./navigator.component.scss']
+  styleUrls: ['./navigator.component.scss'],
+  providers: [DataService]
 })
 export class NavigatorComponent implements OnInit {
   private querySubscription!: Subscription;
   public pageNumber!: number;
-  public users!: IData[];
+
+  public displayUser: any = [];
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private readonly service: DataService
+  ) {
+
+  }
 
   ngOnInit(): void {
-    this.getNavigatePage();
-    this.getDateFromService();
+    this.getDataService();
+    this.service.count$.subscribe(count => this.log(count))
   }
 
-  public getDateFromService() {
-    this.users = dataJSON;
-    console.log(this.users)
+  log(data: any) {
+    console.log(data, 'NNNNNNNNNn')
   }
 
-  public getNavigatePage() {
-    this.querySubscription = this.route.queryParams
-      .subscribe((params: any) => {
-        this.pageNumber = params['tab']
-      })
+  public getDataService() {
+    this.service.newDate().subscribe((date) => {
+      console.log('DataNew', date);
+        this.displayUser = date;
+    })
   }
-
 
 
 }
