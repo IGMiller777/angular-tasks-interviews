@@ -1,8 +1,4 @@
 export interface IData {
-  data: IFullData[]
-}
-
-export interface IFullData {
   _id: string,
   amount: string,
   type: string,

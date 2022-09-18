@@ -1,5 +1,4 @@
-{
-  "data": [
+[
     {
       "_id": "5d99beb677015a5c2c14542e",
       "amount": "floating(1, 4000, 2)",
@@ -1300,5 +1299,4 @@
       "phone": "+1 (938) 546-2133",
       "address": "547 Ebony Court, Rivera, Minnesota, 915"
     }
-  ]
-}
+]

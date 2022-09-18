@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Subscription, switchAll} from "rxjs";
+import {Observable, Subscription, switchAll} from "rxjs";
 import { Router} from "@angular/router";
+import {IData} from "../interfaces/data.interface";
+import {HttpClient} from "@angular/common/http";
+import dataJSON from '../data.json';
 
 @Component({
   selector: 'app-navigator',
@@ -9,34 +12,31 @@ import { Router} from "@angular/router";
   styleUrls: ['./navigator.component.scss']
 })
 export class NavigatorComponent implements OnInit {
+  private querySubscription!: Subscription;
+  public pageNumber!: number;
+  public users!: IData[];
 
-  id: any;
-
-  constructor(private route: ActivatedRoute, private router: Router ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.navigateToPage();
+    this.getNavigatePage();
+    this.getDateFromService();
   }
 
-  public navigateToPage() {
-    this.route.queryParams.subscribe((query) => {
-      this.id = query['tab']
-      switch (+this.id) {
-        case (1):
-          this.router.navigate(['income']);
-          break;
-        case (2):
-          this.router.navigate(['outcome']);
-          break;
-        case (3):
-          this.router.navigate(['loans']);
-          break;
-        case (4):
-          this.router.navigate(['investment']);
-          break;
-      }
-
-    })
+  public getDateFromService() {
+    this.users = dataJSON;
+    console.log(this.users)
   }
+
+  public getNavigatePage() {
+    this.querySubscription = this.route.queryParams
+      .subscribe((params: any) => {
+        this.pageNumber = params['tab']
+      })
+  }
+
+
 
 }

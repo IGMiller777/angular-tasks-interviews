@@ -1,1 +1,15 @@
-<h1>{{id}}</h1>
+<div class="wrapp-data">
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th> <th>Account</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.name.first}} {{user.name.last}}</td> <td>{{user.company}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
