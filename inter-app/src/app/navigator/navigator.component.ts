@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Observable, Subscription, switchAll} from "rxjs";
 import { Router} from "@angular/router";
@@ -11,13 +11,14 @@ import {DataService} from "../service/data.service";
   selector: 'app-navigator',
   templateUrl: './navigator.component.html',
   styleUrls: ['./navigator.component.scss'],
-  providers: [DataService]
 })
-export class NavigatorComponent implements OnInit {
-  private querySubscription!: Subscription;
-  public pageNumber!: number;
-
+export class NavigatorComponent implements OnInit,OnDestroy {
   public displayUser: any = [];
+  public flagDisplay: boolean = false;
+
+
+  msgList: any = [];
+  subscription: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,20 +29,22 @@ export class NavigatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDataService();
-    this.service.count$.subscribe(count => this.log(count))
-  }
-
-  log(data: any) {
-    console.log(data, 'NNNNNNNNNn')
-  }
-
-  public getDataService() {
-    this.service.newDate().subscribe((date) => {
-      console.log('DataNew', date);
-        this.displayUser = date;
+    // this.getDataService();
+    this.subscription = this.service.accessMessage().subscribe((msg) => {
+      console.log(msg, 'MESSAGE')
+      this.msgList.push(msg);
     })
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  // public getDataService() {
+  //   this.service.getPage().subscribe((date) => {
+  //      return this.displayUser = date;
+  //   })
+  // }
 
 
 }

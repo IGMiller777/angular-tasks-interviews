@@ -1,4 +1,4 @@
-<div class="wrapp-data">
+<div class="wrapp-data" *ngIf="flagDisplay">
   <table>
     <thead>
     <tr>
@@ -13,3 +13,6 @@
   </table>
 </div>
 
+<ul>
+  <li *ngFor="let msg of msgList">{{msg}}</li>
+</ul>
