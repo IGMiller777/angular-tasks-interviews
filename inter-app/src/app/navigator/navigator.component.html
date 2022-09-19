@@ -1,4 +1,4 @@
-<div class="wrapp-data" *ngIf="flagDisplay">
+<div class="wrapp-data">
   <table>
     <thead>
     <tr>
@@ -7,12 +7,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let user of displayUser">
-      <td>{{user.name.first}} {{user.name.last}}</td> <td>{{user.company}}</td>
+      <td>{{user.type}}</td>
+<!--      <td>{{user.name.first}} {{user.name.last}}</td> <td>{{user.company}}</td>-->
     </tr>
     </tbody>
   </table>
 </div>
 
-<ul>
-  <li *ngFor="let msg of msgList">{{msg}}</li>
-</ul>

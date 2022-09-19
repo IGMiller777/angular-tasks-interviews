@@ -13,6 +13,7 @@ export class DataService {
   public page: string | number = '';
 
   public message = new Subject();
+  public dataUser = new Subject();
 
   constructor() {
     this.usersData = dataJSON;
@@ -27,37 +28,38 @@ export class DataService {
   }
 
 
+  public setDate (page: any) {
+    this.dataForRender = [];
+    this.usersData.map((data) => {
+      if(page === 1) {
+        if(data.type === 'income'){
+          this.dataForRender.push(data);
+        }
+      }
+      if(page === 2) {
+        if(data.type === 'outcome'){
+          this.dataForRender.push(data);
+        }
+      }
+      if(page === 3) {
+        if(data.type === 'loan'){
+          this.dataForRender.push(data);
+        }
+      }
+      if(page === 4) {
+        if(data.type === 'investment'){
+          this.dataForRender.push(data);
+        }
+      }
+    })
+    this.dataUser.next(this.dataForRender)
 
+  }
 
-  // public getPage(page?: number): Observable<IData> {
-  //   this.dataForRender = [];
-  //   this.usersData.map((user) => {
-  //     if(page === 1) {
-  //       if(user.type === 'income'){
-  //         this.dataForRender.push(user);
-  //       }
-  //     }
-  //     if(page === 2) {
-  //       if(user.type === 'outcome'){
-  //         this.dataForRender.push(user);
-  //       }
-  //     }
-  //     if(page === 3) {
-  //       if(user.type === 'loan'){
-  //         this.dataForRender.push(user);
-  //       }
-  //     }
-  //     if(page === 4) {
-  //       if(user.type === 'investment'){
-  //         this.dataForRender.push(user);
-  //       }
-  //     }
-  //   })
-  //   console.log('DATA SERVICe', this.dataForRender)
-  //   return of(this.dataForRender);
-  //
-  // }
+  public accessDate() {
+    return this.dataUser.asObservable();
 
+  }
 }
 
 // this.querySubscription = this.route.queryParams

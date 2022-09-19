@@ -14,13 +14,7 @@ export class AppComponent {
   constructor(private service: DataService) {
   }
 
-
-  // callService(value: number) {
-  //   this.service.getPage(value);
-  // }
-
-  addMessage() {
-    this.service.setMessage(this.message);
-    this.message = '';
+  public addDate(count: any) {
+    this.service.setDate(count);
   }
 }

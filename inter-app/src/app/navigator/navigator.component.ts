@@ -15,10 +15,7 @@ import {DataService} from "../service/data.service";
 export class NavigatorComponent implements OnInit,OnDestroy {
   public displayUser: any = [];
   public flagDisplay: boolean = false;
-
-
-  msgList: any = [];
-  subscription: any;
+  public subscription: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,10 +26,12 @@ export class NavigatorComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.getDataService();
-    this.subscription = this.service.accessMessage().subscribe((msg) => {
-      console.log(msg, 'MESSAGE')
-      this.msgList.push(msg);
+    this.subscription = this.service.accessDate().subscribe((date: any) => {
+      this.displayUser = [];
+      this.flagDisplay = true;
+      this.displayUser.push(date);
+      console.log('My date', this.displayUser);
+
     })
   }
 
@@ -40,11 +39,6 @@ export class NavigatorComponent implements OnInit,OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  // public getDataService() {
-  //   this.service.getPage().subscribe((date) => {
-  //      return this.displayUser = date;
-  //   })
-  // }
 
 
 }
