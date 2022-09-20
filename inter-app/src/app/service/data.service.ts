@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import dataJSON from '../data.json';
 import {IData} from "../interfaces/data.interface";
-import {Observable, of, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,24 +9,12 @@ import {Observable, of, Subject} from 'rxjs';
 export class DataService {
 
   public usersData!: IData[];
-  public dataForRender: any = [];
-  public page: string | number = '';
-
-  public message = new Subject();
+  public dataForRender: IData[] = [];
   public dataUser = new Subject();
 
   constructor() {
     this.usersData = dataJSON;
   }
-
-  public setMessage(date:any) {
-    console.log(date, 'Service')
-    this.message.next(date)
-  }
-  public accessMessage() {
-    return this.message.asObservable();
-  }
-
 
   public setDate (page: any) {
     this.dataForRender = [];
@@ -53,17 +41,9 @@ export class DataService {
       }
     })
     this.dataUser.next(this.dataForRender)
-
   }
 
   public accessDate() {
-    return this.dataUser.asObservable();
-
+    return this.dataUser.asObservable()
   }
 }
-
-// this.querySubscription = this.route.queryParams
-//   .subscribe((params: any) => {
-//     this.pageNumber = params['tab'];
-//       this.changeData(this.pageNumber);
-//   })

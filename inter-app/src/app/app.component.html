@@ -1,35 +1,43 @@
-<div class="wrapper-table">
-  <div class="upper-level">
-    <ul>
-      <li (click)="addDate(1)" >
-        <a [routerLink]="['navigator']" [queryParams]="{'tab': '1'}"
-           routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-           >
-          Income
-        </a>
+<div class="m-md-4 border border-3 border-dark d-flex flex-column align-items-center">
+  <div class="d-flex p-2">
+    <ul class="d-flex flex-row list-unstyled">
+      <li (click)="addDate(1)">
+          <a class="text-decoration-none btn btn-outline-success active"
+             role="button" aria-pressed="true" [routerLink]="['navigator']"
+             [queryParams]="{'tab': '1'}"
+             routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          >
+            Income
+          </a>
       </li>
       <li (click)="addDate(2)">
-        <a [routerLink]="['navigator']" [queryParams]="{'tab': '2'}"
-        routerLinkActive="active">
+        <a class="text-decoration-none btn btn-outline-success active"
+           role="button" aria-pressed="true" [routerLink]="['navigator']"
+           [queryParams]="{'tab': '2'}"
+           routerLinkActive="active">
           Outcome
         </a>
       </li>
       <li (click)="addDate(3)">
-        <a [routerLink]="['navigator']" [queryParams]="{'tab': '3'}"
+        <a class="text-decoration-none btn btn-outline-success active"
+           role="button" aria-pressed="true"  [routerLink]="['navigator']"
+           [queryParams]="{'tab': '3'}"
            routerLinkActive="active">
           Loans
         </a>
       </li>
       <li (click)="addDate(4)">
-        <a [routerLink]="['navigator']" [queryParams]="{'tab': '4'}"
+        <a class="text-decoration-none btn btn-outline-success active"
+           role="button" aria-pressed="true"  [routerLink]="['navigator']"
+           [queryParams]="{'tab': '4'}"
            routerLinkActive="active">
           Investment
         </a>
       </li>
     </ul>
   </div>
-  <div class="lower-level">
-      <app-navigator></app-navigator>
+    <div class="container mt-5 p-2">
+      <router-outlet></router-outlet>
   </div>
 </div>
 

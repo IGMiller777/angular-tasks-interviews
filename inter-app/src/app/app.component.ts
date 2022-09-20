@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {DataService} from "./service/data.service";
 
 @Component({
@@ -7,9 +7,6 @@ import {DataService} from "./service/data.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'inter-app';
-
-  public message: string = ''
 
   constructor(private service: DataService) {
   }

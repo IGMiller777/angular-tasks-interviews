@@ -1,14 +1,13 @@
-<div class="wrapp-data">
-  <table>
+<div>
+  <table class="table table-striped">
     <thead>
     <tr>
       <th>Name</th> <th>Account</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of displayUser">
-      <td>{{user.type}}</td>
-<!--      <td>{{user.name.first}} {{user.name.last}}</td> <td>{{user.company}}</td>-->
+    <tr *ngFor="let user of displayDate">
+      <td>{{user.name.first}} {{user.name.last}}</td> <td>{{user.address.slice(0,3)}}</td>
     </tr>
     </tbody>
   </table>

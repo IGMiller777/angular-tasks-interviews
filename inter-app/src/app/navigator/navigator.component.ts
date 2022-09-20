@@ -1,11 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Observable, Subscription, switchAll} from "rxjs";
-import { Router} from "@angular/router";
 import {IData} from "../interfaces/data.interface";
-import {HttpClient} from "@angular/common/http";
-import dataJSON from '../data.json';
 import {DataService} from "../service/data.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-navigator',
@@ -13,32 +9,25 @@ import {DataService} from "../service/data.service";
   styleUrls: ['./navigator.component.scss'],
 })
 export class NavigatorComponent implements OnInit,OnDestroy {
-  public displayUser: any = [];
+
+  public dataSubscr: IData[] = [];
+  public displayDate: IData[] = [];
   public flagDisplay: boolean = false;
-  public subscription: any;
+  public subscription: Subscription | undefined;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private readonly service: DataService
-  ) {
-
-  }
+  constructor(private readonly service: DataService) { }
 
   ngOnInit(): void {
     this.subscription = this.service.accessDate().subscribe((date: any) => {
-      this.displayUser = [];
+      this.dataSubscr = [];
       this.flagDisplay = true;
-      this.displayUser.push(date);
-      console.log('My date', this.displayUser);
-
+      this.dataSubscr.push(date);
+      this.displayDate = this.dataSubscr.flat();
     })
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription!.unsubscribe();
   }
-
-
 
 }
