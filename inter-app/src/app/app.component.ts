@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {DataService} from "./service/data.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'inter-app';
+
+  constructor(private service: DataService) {
+  }
+
+  public addDate(count: any) {
+    this.service.setDate(count);
+  }
 }
